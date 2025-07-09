@@ -4,17 +4,17 @@
 This project provides a quick and automated way to install
 and manage a Kuzco inference worker on a VPS without using GPU.
 
-## **Need powerful VPS with NVMe + affordable prices?**
-## **Order now:** https://goldvps.net
+**Need powerful VPS with NVMe + affordable prices?**
+**Order now:** https://goldvps.net
 
 Supported OS: Ubuntu 22.04 or 24.04  
 Minimum RAM : 4GB
 
 ------------------------------------------------------------
-# INSTALLATION OPTIONS
+## INSTALLATION OPTIONS
 ------------------------------------------------------------
 
-## [Option 1] One-Line Quick Install
+### [Option 1] One-Line Quick Install
 ---------------------------------
 Automatically installs Docker, prompts for Vikey API key and
 Kuzco Worker Code, then launches the worker.
@@ -24,7 +24,7 @@ Run this in your VPS terminal:
   curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/install.sh && bash install.sh
 ```
 
-[Option 2] Interactive CLI Menu
+### [Option 2] Interactive CLI Menu
 -------------------------------
 Provides a simple menu to add, start, stop, or view logs of your worker.
 
@@ -41,7 +41,7 @@ Main features:
   - Exit
 
 ------------------------------------------------------------
-REQUIREMENTS
+### REQUIREMENTS
 ------------------------------------------------------------
 
 - A VPS with Ubuntu 22.04 or 24.04
@@ -58,7 +58,7 @@ How to get your Worker Code:
   4. Use only the UUID part as your code
 
 ------------------------------------------------------------
-CREDITS
+### CREDITS
 ------------------------------------------------------------
 
 This installer was adapted from a guide written by @a31:
@@ -69,7 +69,7 @@ Link: https://paragraph.com/@a31/kuzco-epoch-3-cara-setup-docker-di-inference-ku
 Special thanks for the foundational tutorial and knowledge.
 
 ------------------------------------------------------------
-MADE BY [GOLDVPS](https://goldvps.net)
+## MADE BY [GOLDVPS](https://goldvps.net)
 ------------------------------------------------------------
 
 Created by: https://t.me/miftaikyy

@@ -11,11 +11,8 @@ Supported OS: Ubuntu 22.04 or 24.04
 Minimum RAM : 4GB
 
 ------------------------------------------------------------
-## INSTALLATION OPTIONS
+## INSTALLATION
 ------------------------------------------------------------
-
-### Interactive CLI Menu
--------------------------------
 Provides a simple menu to add, start, stop, or view logs of your worker.
 
 Run this in your VPS terminal:

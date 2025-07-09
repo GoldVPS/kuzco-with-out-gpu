@@ -4,17 +4,17 @@
 This project provides a quick and automated way to install
 and manage a Kuzco inference worker on a VPS without using GPU.
 
-Need powerful VPS with NVMe + affordable prices?
-Order now: https://goldvps.net
+## **Need powerful VPS with NVMe + affordable prices?**
+## **Order now:** https://goldvps.net
 
 Supported OS: Ubuntu 22.04 or 24.04  
 Minimum RAM : 4GB
 
 ------------------------------------------------------------
-INSTALLATION OPTIONS
+# INSTALLATION OPTIONS
 ------------------------------------------------------------
 
-[Option 1] One-Line Quick Install
+## [Option 1] One-Line Quick Install
 ---------------------------------
 Automatically installs Docker, prompts for Vikey API key and
 Kuzco Worker Code, then launches the worker.

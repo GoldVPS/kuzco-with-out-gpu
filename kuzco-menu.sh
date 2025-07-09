@@ -1,10 +1,15 @@
 #!/bin/bash
 
-# Warna terminal
+# Warna Terminal
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
+RED='\033[0;31m'
 RESET='\033[0m'
 BLUE_LINE="\033[1;34m────────────────────────────────────────────${RESET}"
+
+# Folder dasar
+BASE_DIR=~/kuzco-workers
+mkdir -p "$BASE_DIR"
 
 while true; do
     clear
@@ -21,41 +26,56 @@ while true; do
 
     case $option in
         1)
+            echo -e "${CYAN}Enter Worker Name (e.g. worker1):${RESET}"
+            read worker_name
             echo -e "${CYAN}Enter Vikey API Key:${RESET}"
             read api_key
             echo -e "${CYAN}Enter Kuzco Worker Code:${RESET}"
             read worker_code
 
+            worker_dir="${BASE_DIR}/${worker_name}"
+            mkdir -p "$worker_dir"
+
             echo -e "${GREEN}Installing Docker & dependencies...${RESET}"
-            apt update
+            apt update -y
             apt install -y docker.io docker-compose git
 
             echo -e "${GREEN}Cloning installer...${RESET}"
-            rm -rf ~/kuzco-installer-docker
-            git clone https://github.com/direkturcrypto/kuzco-installer-docker ~/kuzco-installer-docker
+            git clone https://github.com/GoldVPS/kuzco-with-out-gpu.git "$worker_dir" >/dev/null 2>&1
 
-            cd ~/kuzco-installer-docker/kuzco-main
-            sed -i "s/YOUR_VIKEY_API_KEY/$api_key/" docker-compose.yml
-            sed -i "s/YOUR_WORKER_CODE/$worker_code/" docker-compose.yml
+            cd "$worker_dir" || exit
+            sed -i "s/YOUR_VIKEY_API_KEY/${api_key}/" docker-compose.yml
+            sed -i "s/YOUR_WORKER_CODE/${worker_code}/" docker-compose.yml
 
-            echo -e "${GREEN}Starting worker...${RESET}"
+            echo -e "${GREEN}Starting worker ${worker_name}...${RESET}"
             docker-compose up -d --build
             read -n 1 -s -r -p "Press any key to return to menu"
             ;;
         2)
-            cd ~/kuzco-installer-docker/kuzco-main || exit
+            echo -e "${CYAN}Available Workers:${RESET}"
+            ls "$BASE_DIR"
+            echo -e "${CYAN}Enter Worker Name to view logs:${RESET}"
+            read worker_name
+            cd "$BASE_DIR/$worker_name" || { echo -e "${RED}Worker not found.${RESET}"; sleep 2; continue; }
             docker-compose logs -f --tail 100
             ;;
         3)
-            cd ~/kuzco-installer-docker/kuzco-main || exit
+            echo -e "${CYAN}Available Workers:${RESET}"
+            ls "$BASE_DIR"
+            echo -e "${CYAN}Enter Worker Name to stop:${RESET}"
+            read worker_name
+            cd "$BASE_DIR/$worker_name" || { echo -e "${RED}Worker not found.${RESET}"; sleep 2; continue; }
             docker-compose down
-            echo -e "${GREEN}Worker stopped.${RESET}"
+            echo -e "${GREEN}Worker ${worker_name} stopped.${RESET}"
             sleep 1
             ;;
         4)
-            echo -e "${GREEN}Reinstalling worker...${RESET}"
-            rm -rf ~/kuzco-installer-docker
-            echo -e "${CYAN}Worker removed. Run option 1 to reinstall.${RESET}"
+            echo -e "${CYAN}Available Workers:${RESET}"
+            ls "$BASE_DIR"
+            echo -e "${CYAN}Enter Worker Name to reinstall:${RESET}"
+            read worker_name
+            rm -rf "$BASE_DIR/$worker_name"
+            echo -e "${CYAN}Worker ${worker_name} removed. Use option 1 to reinstall.${RESET}"
             sleep 1
             ;;
         5)

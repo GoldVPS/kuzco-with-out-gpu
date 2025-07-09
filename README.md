@@ -1,71 +1,75 @@
 
-Kuzco Auto Installer (No GPU)
+============================================================
+             Kuzco Auto Installer (No GPU Version)
+============================================================
 
-This repository provides an automated and interactive way to install and manage a Kuzco inference worker on a VPS without GPU.
+This project provides a quick and automated way to install
+and manage a Kuzco inference worker on a VPS without using GPU.
 
-Supports:
-- Ubuntu 22.04 / 24.04
-- RAM ≥ 4GB
-- CPU-only VPS (no GPU required)
+Supported OS: Ubuntu 22.04 or 24.04
+Minimum RAM : 4GB
 
----
+------------------------------------------------------------
+INSTALLATION OPTIONS
+------------------------------------------------------------
 
-Installation Methods
+[Option 1] One-Line Quick Install
+---------------------------------
+Automatically installs Docker, prompts for Vikey API key and
+Kuzco Worker Code, then launches the worker.
 
-You can choose either one-command auto install, or use an interactive CLI menu.
+Run this in your VPS terminal:
 
-1. One-Line Auto Installer (Simple)
+  curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/install.sh && bash install.sh
 
-Runs a one-time installer that:
-- Installs Docker & dependencies
-- Asks for your Vikey API key and Kuzco Worker code
-- Automatically launches the worker
 
-curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/install.sh && bash install.sh
+[Option 2] Interactive CLI Menu
+-------------------------------
+Provides a simple menu to add, start, stop, or view logs of your worker.
 
-2. Interactive CLI Menu
+Run this in your VPS terminal:
 
-If you prefer a menu-based interface to add/start/stop/view workers:
+  curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/kuzco-menu.sh && bash kuzco-menu.sh
 
-curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/kuzco-menu.sh && bash kuzco-menu.sh
+Main features:
+  - Add & Run Worker
+  - View Logs
+  - Stop Worker
+  - Reinstall Worker
+  - Exit
 
-Menu features:
-- Add & Run worker
-- View logs (live)
-- Stop worker
-- Reinstall
-- Exit
-
----
-
-Requirements
+------------------------------------------------------------
+REQUIREMENTS
+------------------------------------------------------------
 
 - A VPS with Ubuntu 22.04 or 24.04
-- Minimum 4GB RAM
+- At least 4GB of RAM
 - API Key from https://vikey.ai
 - Worker Code from https://kuzco.ai
 
-You can get your worker code from the Kuzco dashboard under:
-Worker > Launch Worker > CLI tab.
+How to get your Worker Code:
+  1. Go to Kuzco dashboard
+  2. Select "Worker" > "Launch Worker" > CLI Tab
+  3. Example output:
+     inference node start --code 5367fbca-xxxx-xxxx-xxxx-xxxxxxxx
+  4. Use only the UUID part as your code
 
-Example:
-inference node start --code 5367fbca-xxxx-xxxx-xxxx-xxxxxxxx
-Use only the code part (5367fbca-xxxx-...) in the script.
+------------------------------------------------------------
+CREDITS
+------------------------------------------------------------
 
----
+This installer was adapted from a guide written by @a31:
 
-Credits
+"Kuzco Epoch 3 – Cara Setup Docker di Inference Kuzco Menggunakan VPS Tanpa GPU"
+Link: https://paragraph.com/@a31/kuzco-epoch-3-cara-setup-docker-di-inference-kuzco-menggunakan-vps-tanpa-gpu
 
-This script was heavily inspired and adapted from the tutorial originally written by a31:
+Special thanks for the foundational tutorial and knowledge.
 
-Kuzco Epoch 3 – Cara Setup Docker di Inference Kuzco Menggunakan VPS Tanpa GPU:
-https://paragraph.com/@a31/kuzco-epoch-3-cara-setup-docker-di-inference-kuzco-menggunakan-vps-tanpa-gpu
+------------------------------------------------------------
+MADE BY GOLDVPS
+------------------------------------------------------------
 
-Thanks to the author for sharing the foundational steps and explanation.
+Created by: https://t.me/GoldVPSBot
 
----
-
-Created by GOLDVPS (https://t.me/GoldVPSBot)
-
-Need fast, reliable VPS with NVMe & affordable pricing?
-Visit: https://goldvps.net
+Need powerful VPS with NVMe + affordable prices?
+Order now via Telegram bot!

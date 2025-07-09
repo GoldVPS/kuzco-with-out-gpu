@@ -21,7 +21,7 @@ Kuzco Worker Code, then launches the worker.
 
 Run this in your VPS terminal:
 ```bash
-  curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/install.sh && bash install.sh
+curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/install.sh && bash install.sh
 ```
 
 ### [Option 2] Interactive CLI Menu
@@ -30,7 +30,7 @@ Provides a simple menu to add, start, stop, or view logs of your worker.
 
 Run this in your VPS terminal:
 ```bash
-  curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/kuzco-menu.sh && bash kuzco-menu.sh
+curl -O https://raw.githubusercontent.com/GoldVPS/kuzco-with-out-gpu/main/kuzco-menu.sh && bash kuzco-menu.sh
 ```
 
 Main features:

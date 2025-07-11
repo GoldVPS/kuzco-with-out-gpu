@@ -1,11 +1,30 @@
 #!/bin/bash
 
-# Warna terminal
+# === Warna terminal ===
 GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 RESET='\033[0m'
-BLUE_LINE="\033[1;34m────────────────────────────────────────────${RESET}"
+BLUE_LINE="\e[38;5;220m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
 
+# === Tampilkan Header ===
+function show_header() {
+    clear
+    echo -e "\e[38;5;220m"
+    echo " ██████╗  ██████╗ ██╗     ██████╗ ██╗   ██╗██████╗ ███████╗"
+    echo "██╔════╝ ██╔═══██╗██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝"
+    echo "██║  ███╗██║   ██║██║     ██║  ██║██║   ██║██████╔╝███████╗"
+    echo "██║   ██║██║   ██║██║     ██║  ██║╚██╗ ██╔╝██╔═══╝ ╚════██║"
+    echo "╚██████╔╝╚██████╔╝███████╗██████╔╝ ╚████╔╝ ██║     ███████║"
+    echo " ╚═════╝  ╚═════╝ ╚══════╝╚═════╝   ╚═══╝  ╚═╝     ╚══════╝"
+    echo -e "\e[0m"
+    echo -e "🚀 \e[1;33mNexus Node Installer\e[0m - Powered by \e[1;33mGoldVPS Team\e[0m 🚀"
+    echo -e "🌐 \e[4;33mhttps://goldvps.net\e[0m - Best VPS with Low Price"
+    echo ""
+}
+
+# === MAIN MENU ===
 while true; do
     clear
     echo -e "${BLUE_LINE}"

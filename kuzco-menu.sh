@@ -28,8 +28,6 @@ function show_header() {
 while true; do
     show_header
     echo -e "${BLUE_LINE}"
-    echo -e "${CYAN}            Kuzco Worker Manager           ${RESET}"
-    echo -e "${BLUE_LINE}"
     echo -e "  ${GREEN}1.${RESET} Add & Run Worker"
     echo -e "  ${GREEN}2.${RESET} View Logs"
     echo -e "  ${GREEN}3.${RESET} Stop Worker"

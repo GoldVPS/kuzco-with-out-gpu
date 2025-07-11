@@ -26,7 +26,7 @@ function show_header() {
 
 # === MAIN MENU ===
 while true; do
-    clear
+    show_header
     echo -e "${BLUE_LINE}"
     echo -e "${CYAN}            Kuzco Worker Manager           ${RESET}"
     echo -e "${BLUE_LINE}"

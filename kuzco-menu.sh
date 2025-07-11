@@ -19,7 +19,7 @@ function show_header() {
     echo "╚██████╔╝╚██████╔╝███████╗██████╔╝ ╚████╔╝ ██║     ███████║"
     echo " ╚═════╝  ╚═════╝ ╚══════╝╚═════╝   ╚═══╝  ╚═╝     ╚══════╝"
     echo -e "\e[0m"
-    echo -e "🚀 \e[1;33Kuzco Node Installer\e[0m - Powered by \e[1;33mGoldVPS Team\e[0m 🚀"
+    echo -e "🚀 \e[1;33mNexus Node Installer\e[0m - Powered by \e[1;33mGoldVPS Team\e[0m 🚀"
     echo -e "🌐 \e[4;33mhttps://goldvps.net\e[0m - Best VPS with Low Price"
     echo ""
 }
@@ -27,6 +27,9 @@ function show_header() {
 # === MAIN MENU ===
 while true; do
     show_header
+    echo -e "${BLUE_LINE}"
+    echo -e "${CYAN}            Kuzco Worker Manager           ${RESET}"
+    echo -e "${BLUE_LINE}"
     echo -e "  ${GREEN}1.${RESET} Add & Run Worker"
     echo -e "  ${GREEN}2.${RESET} View Logs"
     echo -e "  ${GREEN}3.${RESET} Stop Worker"

@@ -8,7 +8,6 @@ CYAN='\033[0;36m'
 RESET='\033[0m'
 BLUE_LINE="\e[38;5;220m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\e[0m"
 
-# === Tampilkan Header ===
 function show_header() {
     clear
     echo -e "\e[38;5;220m"
@@ -24,22 +23,21 @@ function show_header() {
     echo ""
 }
 
-# === Install Docker (official method) ===
 function install_docker() {
-    echo -e "${YELLOW}Installing Docker (official)...${RESET}"
-    apt remove docker docker.io containerd runc -y
-    apt update
+    echo -e "${YELLOW}Installing Docker...${RESET}"
+    apt remove -y docker docker.io containerd runc
+    apt update -y
     apt install -y ca-certificates curl gnupg git lsb-release
 
-    mkdir -m 0755 -p /etc/apt/keyrings
+    mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
     echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
-      https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-      > /etc/apt/sources.list.d/docker.list
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+    https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    > /etc/apt/sources.list.d/docker.list
 
-    apt update
+    apt update -y
     apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
     systemctl enable docker
@@ -58,12 +56,12 @@ while true; do
     echo -e "${BLUE_LINE}"
     read -p "Select an option (1–5): " option
 
-    case $option in
+    case "$option" in
         1)
             echo -e "${CYAN}Enter Vikey API Key:${RESET}"
-            read api_key
+            read -r api_key
             echo -e "${CYAN}Enter Kuzco Worker Code:${RESET}"
-            read worker_code
+            read -r worker_code
 
             install_docker
 
@@ -72,11 +70,12 @@ while true; do
             git clone https://github.com/direkturcrypto/kuzco-installer-docker ~/kuzco-installer-docker
 
             cd ~/kuzco-installer-docker/kuzco-main || exit
-            sed -i "s/YOUR_VIKEY_API_KEY/$api_key/" docker-compose.yml
-            sed -i "s/YOUR_WORKER_CODE/$worker_code/" docker-compose.yml
+            sed -i "s/YOUR_VIKEY_API_KEY/${api_key}/" docker-compose.yml
+            sed -i "s/YOUR_WORKER_CODE/${worker_code}/" docker-compose.yml
 
             echo -e "${GREEN}Starting worker...${RESET}"
             docker compose up -d --build
+
             read -n 1 -s -r -p "Press any key to return to menu"
             ;;
         2)

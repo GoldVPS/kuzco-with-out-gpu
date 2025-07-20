@@ -56,12 +56,12 @@ while true; do
             sed -i "s/YOUR_WORKER_CODE/$worker_code/" docker-compose.yml
 
             echo -e "${GREEN}Starting worker...${RESET}"
-            docker-compose up -d --build
+            docker compose up -d --build
             read -n 1 -s -r -p "Press any key to return to menu"
             ;;
         2)
             cd ~/kuzco-installer-docker/kuzco-main || exit
-            docker-compose logs -f --tail 100
+            docker compose logs -f --tail 100
             ;;
         3)
             cd ~/kuzco-installer-docker/kuzco-main || exit

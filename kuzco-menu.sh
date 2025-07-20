@@ -24,6 +24,25 @@ function show_header() {
     echo ""
 }
 
+# === Install Docker dengan cara resmi ===
+function install_docker() {
+    echo -e "${YELLOW}Installing Docker (official)...${RESET}"
+    apt remove docker docker.io containerd runc -y
+    apt update
+    apt install -y ca-certificates curl gnupg git lsb-release
+
+    mkdir -m 0755 -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+      https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+      > /etc/apt/sources.list.d/docker.list
+
+    apt update
+    apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+}
+
 # === MAIN MENU ===
 while true; do
     show_header
@@ -43,9 +62,7 @@ while true; do
             echo -e "${CYAN}Enter Kuzco Worker Code:${RESET}"
             read worker_code
 
-            echo -e "${GREEN}Installing Docker & dependencies...${RESET}"
-            apt update
-            apt install -y docker.io docker-compose git
+            install_docker
 
             echo -e "${GREEN}Cloning installer...${RESET}"
             rm -rf ~/kuzco-installer-docker
@@ -65,7 +82,7 @@ while true; do
             ;;
         3)
             cd ~/kuzco-installer-docker/kuzco-main || exit
-            docker-compose down
+            docker compose down
             echo -e "${GREEN}Worker stopped.${RESET}"
             sleep 1
             ;;

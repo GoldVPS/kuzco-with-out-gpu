@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM debian:bookworm-slim
 
 # deps dasar
 RUN apt-get update && apt-get install -y --no-install-recommends \

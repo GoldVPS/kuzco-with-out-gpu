@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  kuzco-main:
+    build: .
+    container_name: kuzco-main
+    restart: unless-stopped
+    environment:
+      NODE_ENV: "production"
+
+      # === isi tiga variable ini ===
+      CODE: "YOUR_WORKER_CODE"                 # dari dashboard Inference (Launch Worker > CLI)
+      WORKER_NAME: "YOUR_WORKER_NAME"          # opsional (buat identitas)
+      HYPERBOLIC_API_KEY: "YOUR_HYPERBOLIC_API_KEY"
+
+      # === konfigurasi model/endpoint ===
+      DEFAULT_MODEL: "llama-3.2-3b-instruct"   # alias di proxy (bebas, tapi konsisten)
+      BASE_URL: "https://api.hyperbolic.xyz/v1/openai"
+      # kalau Hyperbolic minta path /v1/chat/completions langsung, tetap boleh pakai /v1/openai (OpenAI-compatible)
+      # model asli di provider:
+      UPSTREAM_MODEL_SLUG: "meta-llama/Llama-3.2-3B-Instruct"
+
+    ports:
+      - "14444:14444"   # expose proxy (opsional; untuk debug)
+    networks:
+      - kuzco-network
+
+networks:
+  kuzco-network:
+    driver: bridge
